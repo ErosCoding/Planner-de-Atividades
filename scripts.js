@@ -1,3 +1,19 @@
+// bibliotecas e codigos de terceiros
+const formatador = (data) => {
+    
+    return {
+        dia: {
+            numerico: dayjs(data).format('DD'),
+            semana: {
+                curto: dayjs(data).format('ddd')
+                longo: dayjs(data).format('dddd')
+            }
+        },
+        mes: dayjs(data).format('MMMM'),
+        hora: dayjs(data).format('HH:mm')
+            
+    }
+}
 // object {}
 const atividade = {
     nome: "Almoço",
@@ -20,6 +36,8 @@ const atividade = {
     },
   ]
   
+//   atividades = []
+  
   // arrow function
   const criarItemDeAtividade = (atividade) => {
   
@@ -30,18 +48,31 @@ const atividade = {
     }
   
     input += '>'
+
+    const formatar = formatador(atividade.data);
   
     return `
     <div>
       ${input}
       <span>${atividade.nome}</span>
-      <time>${atividade.data}</time>
+      <time>${atividade.dia}, dia XX </time>
     </div>
     `
   }
   
-  
+  const atualizarListaDeAtividade = (atividade) => {
+    const section = document.querySelector('section')  
+  }
+ 
   const section = document.querySelector('section')
+ 
+  // verificar se a minha lista esta vazia
+  if(atividades.length == 0) {
+    section.innerHTML = `<p>Nenhuma atividade cadastrada. </p> `
+    return
+  }
+  
+  
   for(let atividade of atividades) {
     section.innerHTML += criarItemDeAtividade(atividade)
   }
